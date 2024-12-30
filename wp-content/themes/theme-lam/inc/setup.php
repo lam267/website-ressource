@@ -5,13 +5,12 @@ function theme_lam_setup() {
 
     add_theme_support('post-thumbnails');
 
-    // Hỗ trợ menu điều hướng
     register_nav_menus([
         'primary' => __('Primary Menu', 'theme-lam'),
-        'footer'  => __('Footer Menu', 'theme-lam'),
+        'footer_column_1' => __('Footer Column 1 Menu', 'theme-lam'),
+        'footer_column_2' => __('Footer Column 2 Menu', 'theme-lam'),
     ]);
 
-    // Hỗ trợ định dạng bài viết (Post Formats)
     add_theme_support('post-formats', [
         'aside',
         'gallery',

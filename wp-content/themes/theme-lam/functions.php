@@ -9,11 +9,13 @@ require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/theme-functions.php';
 require_once get_template_directory() . '/inc/metabox.php'; 
 
-// function theme_lam_event_category_rewrite() {
-//     add_rewrite_rule(
-//         '^event-category/?$',
-//         'index.php?taxonomy=event-category',
-//         'top'
-//     );
-// }
-// add_action('init', 'theme_lam_event_category_rewrite');
+// Add theme support 2 cách thêm option page ( thêm trực tiếp hoặc thêm theo function)
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page([
+        'page_title' => __('Theme Options', 'theme-lam'),
+        'menu_title' => __('Theme Options', 'theme-lam'),
+        'menu_slug'  => 'theme-options',
+        'capability' => 'edit_posts',
+        'redirect'   => false,
+    ]);
+}
