@@ -177,6 +177,8 @@ function initSwiper(selectedCategory) {
                 spaceBetween: 13,
                 grabCursor: true,
                 top:30,
+                watchOverflow: false, 
+                loop: true,
                 navigation: {
                     nextEl: '.next-slide',
                     prevEl: '.prev-slide',
@@ -191,6 +193,18 @@ function initSwiper(selectedCategory) {
             swiperContainer.find('.swiper-slide').on('click', function () {
                 const index = $(this).index();
                 updateActiveSlide(index);
+            });
+            var partnerItems = document.querySelectorAll(".partner-detail .partner-item");
+
+            swiperInstance.on("slideChange", function () {
+              var activeIndex = swiperInstance.realIndex;
+              partnerItems.forEach(function (item) {
+                item.classList.remove("active");
+              });
+          
+              if (partnerItems[activeIndex]) {
+                partnerItems[activeIndex].classList.add("active");
+              }
             });
         }
     }

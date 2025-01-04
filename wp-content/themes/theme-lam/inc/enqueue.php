@@ -11,81 +11,28 @@ add_action('wp_enqueue_scripts', 'theme_replace_jquery');
 function theme_lam_enqueue_assets() {
     wp_enqueue_style('theme-local-fonts', get_template_directory_uri() . '/assets/fonts/stylesheet.css', [], null);
     wp_enqueue_style('owl-carousel-css', get_template_directory_uri() . '/assets/libs/owl.carousel/owl.carousel.min.css', [], '2.3.4');
+    wp_enqueue_style('tailwind', 'https://cdn.jsdelivr.net/npm/tailwindcss@3.4.16/dist/tailwind.min.css', [], '3.4.16', 'all');
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css', [], '6.0.0', 'all');
+    wp_enqueue_style('theme-base-main-css', get_template_directory_uri() . '/assets/css/base/base.css', [], '1.0.0', 'all');
+    wp_enqueue_style('theme-lam-general-css', get_template_directory_uri() . '/assets/css/general.css', [], '1.0.0', 'all');
+    wp_enqueue_style('theme-lam-style-css', get_template_directory_uri() . '/assets/css/style.css', [], '1.0.0', 'all');
+    wp_enqueue_style('theme-lam-responsize-css', get_template_directory_uri() . '/assets/css/responsize.css', [], '1.0.0', 'all');
 
+    if (is_page('home') || is_front_page()) {
+        wp_enqueue_style('theme-lam-home-css', get_template_directory_uri() . '/assets/css/home.css', [], '1.0.0', 'all');
+    }
+
+    // CSS chỉ dành cho trang Project
+    if (is_page('project')) {
+        wp_enqueue_style('theme-lam-project-css', get_template_directory_uri() . '/assets/css/project.css', [], '1.0.0', 'all');
+    }
+
+    // Thư viện JS chung
+    wp_enqueue_script('swiper-js', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js', ['jquery'], '11.0.5', true);
     wp_enqueue_script('owl-carousel-js', get_template_directory_uri() . '/assets/libs/owl.carousel/owl.carousel.min.js', ['jquery'], '2.3.4', true);
-   
     wp_enqueue_script('theme-slider-init', get_template_directory_uri() . '/assets/js/slider-init.js', ['jquery', 'owl-carousel-js'], '1.0.0', true);
-
-    wp_enqueue_style(
-        'tailwind',
-        'https://cdn.tailwindcss.com/3.4.16',
-        [],
-        '3.3.2',
-        'all'
-    );
-
-    wp_enqueue_style(
-        'font-awesome',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css',
-        [],
-        '6.0.0',
-        'all'
-    );
-    wp_enqueue_style(
-        'theme-base-main-css',
-        get_template_directory_uri() . '/assets/css/base/base.css',
-        [],
-        '1.0.0',
-        'all'
-    );
-
-    wp_enqueue_style(
-        'theme-lam-main-css',
-        get_template_directory_uri() . '/assets/css/main.css',
-        [],
-        '1.0.0',
-        'all'
-    );
-
-    wp_enqueue_style(
-        'theme-lam-general-css',
-        get_template_directory_uri() . '/assets/css/general.css',
-        [],
-        '1.0.0',
-        'all'
-    );
-
-    wp_enqueue_style(
-        'theme-lam-style-css',
-        get_template_directory_uri() . '/assets/css/style.css',
-        [],
-        '1.0.0',
-        'all'
-    );
-
-    wp_enqueue_style(
-        'theme-lam-custom-css',
-        get_template_directory_uri() . '/assets/css/custom.css',
-        ['tailwind', 'font-awesome', 'theme-lam-main-css'],
-        '1.0.0',
-        'all'
-    );
-
-    wp_enqueue_script(
-        'theme-lam-main-js',
-        get_template_directory_uri() . '/assets/js/main.js',
-        ['jquery'],
-        '1.0.0',
-        true
-    );
-
-    wp_enqueue_script(
-        'theme-lam-custom-js',
-        get_template_directory_uri() . '/assets/js/custom.js',
-        ['theme-lam-main-js'],
-        '1.0.0',
-        true
-    );
+    wp_enqueue_script('theme-lam-main-js', get_template_directory_uri() . '/assets/js/main.js', ['jquery'], '1.0.0', true);
+    wp_enqueue_script('theme-lam-custom-js', get_template_directory_uri() . '/assets/js/custom.js', ['theme-lam-main-js'], '1.0.0', true);
 }
 
 add_action('wp_enqueue_scripts', 'theme_lam_enqueue_assets');
@@ -111,7 +58,6 @@ function theme_lam_enqueue_admin_assets($hook) {
 }
 
 add_action('admin_enqueue_scripts', 'theme_lam_enqueue_admin_assets');
-
 // Giải thích:
 // wp_enqueue_style(
 //     'bootstrap',

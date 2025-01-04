@@ -4,7 +4,7 @@
         $link_banner = get_field('link_banner', 'option');
         $background_banner = get_field('background_banner', 'option');
         $slider_images = get_field('slider_images', 'option');
-        ?>
+    ?>
   <section class="content-section">
       <div class="content-background" style="background-image: url('<?php echo esc_url($background_banner); ?>');">
           <div class="container">
@@ -12,7 +12,7 @@
                   <div class="text-content d-flex flex-column justify-start">
                       <h1>
                           <?php if ($title_banner): ?>
-                          <?php echo wp_kses_post($title_banner); ?>
+                            <?php echo wp_kses_post($title_banner); ?>
                           <?php endif; ?>
                       </h1>
                       <div class="button-box  button--secondary d-inline-flex align-center">

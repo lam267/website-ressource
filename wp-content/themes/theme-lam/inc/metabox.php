@@ -43,3 +43,113 @@ function theme_lam_save_event_metabox($post_id) {
     }
 }
 add_action('save_post', 'theme_lam_save_event_metabox');
+
+// Đăng ký Custom Post Type "Team"
+function add_team_meta_boxes() {
+    add_meta_box(
+        'team_meta_box', 
+        __('Team Details', 'textdomain'), 
+        'render_team_meta_box', 
+        'team',
+        'normal', 
+        'high' 
+    );
+}
+add_action('add_meta_boxes', 'add_team_meta_boxes');
+
+function render_team_meta_box($post) {
+    $address = get_post_meta($post->ID, 'team_address', true);
+    $position = get_post_meta($post->ID, 'team_position', true);
+    $description = get_post_meta($post->ID, 'team_description', true);
+
+    ?>
+    <p>
+        <label for="team_address"><?php _e('Address:', 'textdomain'); ?></label>
+        <input type="text" id="team_address" name="team_address" value="<?php echo esc_attr($address); ?>" style="width:100%;">
+    </p>
+    <p>
+        <label for="team_position"><?php _e('Position:', 'textdomain'); ?></label>
+        <input type="text" id="team_position" name="team_position" value="<?php echo esc_attr($position); ?>" style="width:100%;">
+    </p>
+    <p>
+        <label for="team_description"><?php _e('Description:', 'textdomain'); ?></label>
+        <textarea id="team_description" name="team_description" rows="5" style="width:100%;"><?php echo esc_textarea($description); ?></textarea>
+    </p>
+    <?php
+}
+
+function save_team_meta_box($post_id) {
+    if (!isset($_POST['team_address']) || !current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    update_post_meta($post_id, 'team_address', sanitize_text_field($_POST['team_address']));
+    update_post_meta($post_id, 'team_position', sanitize_text_field($_POST['team_position']));
+    update_post_meta($post_id, 'team_description', sanitize_textarea_field($_POST['team_description']));
+}
+add_action('save_post', 'save_team_meta_box');
+
+// Đăng ký Custom Post Type "Network Partners"
+function add_network_description_meta_box() {
+    add_meta_box(
+        'network_description_meta', 
+        __('Partner Description', 'textdomain'), 
+        'render_network_description_meta_box', 
+        'network_partners', 
+        'normal', 
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'add_network_description_meta_box');
+
+function render_network_description_meta_box($post) {
+    $description = get_post_meta($post->ID, '_network_description', true);
+
+    ?>
+    <p>
+        <label for="network_description"><?php _e('Description:', 'textdomain'); ?></label>
+        <textarea id="network_description" name="network_description" rows="5" style="width:100%;"><?php echo esc_textarea($description); ?></textarea>
+    </p>
+    <?php
+}
+
+function save_network_description_meta_box($post_id) {
+    if (!isset($_POST['network_description']) || !current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    update_post_meta($post_id, '_network_description', sanitize_textarea_field($_POST['network_description']));
+}
+add_action('save_post', 'save_network_description_meta_box');
+
+// Đăng ký Custom Post Type "Reviews"
+
+function add_review_meta_box() {
+    add_meta_box(
+        'review_details',
+        __('Reviewer Details', 'textdomain'),
+        'render_review_meta_box',
+        'reviews',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'add_review_meta_box');
+
+function render_review_meta_box($post) {
+    $position = get_post_meta($post->ID, 'reviewer_position', true);
+
+    ?>
+    <p>
+        <label for="reviewer_position"><?php _e('Position:', 'textdomain'); ?></label>
+        <input type="text" id="reviewer_position" name="reviewer_position" value="<?php echo esc_attr($position); ?>" style="width:100%;">
+    </p>
+    <?php
+}
+
+function save_review_meta_box($post_id) {
+    if (isset($_POST['reviewer_position'])) {
+        update_post_meta($post_id, 'reviewer_position', sanitize_text_field($_POST['reviewer_position']));
+    }
+}
+add_action('save_post', 'save_review_meta_box');

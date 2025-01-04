@@ -8,6 +8,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+    <div id="overlay" class="overlay hidden"></div>
     <header>
         <div class="header-pc header d-inline-flex align-center" style="background-color: <?php echo get_theme_mod('header_background_color', '#170049'); ?>;">
             <div class="header-left">
@@ -266,3 +267,6 @@
             </div>
         </div>
     </header>
+    <?php
+    echo do_shortcode('[message_button]');
+    ?>
