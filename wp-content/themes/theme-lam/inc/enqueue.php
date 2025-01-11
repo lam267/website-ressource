@@ -26,14 +26,55 @@ function theme_lam_enqueue_assets() {
     if (is_page('project')) {
         wp_enqueue_style('theme-lam-project-css', get_template_directory_uri() . '/assets/css/project.css', [], '1.0.0', 'all');
     }
-
+    if (is_page('network')) {
+        wp_enqueue_style('theme-lam-network-css', get_template_directory_uri() . '/assets/css/network.css', [], '1.0.0', 'all');
+    }
+    if (is_page('kontakt')) {
+        wp_enqueue_style('theme-lam-kontakt-css', get_template_directory_uri() . '/assets/css/contact.css', [], '1.0.0', 'all');
+    }
+   
+    
+    if (is_post_type_archive('team')) {
+        wp_enqueue_style('theme-lam-team-archive-css', get_template_directory_uri() . '/assets/css/team.css', [], '1.0.0', 'all');
+        wp_enqueue_script('theme-lam-team-js', get_template_directory_uri() . '/assets/js/team.js', ['jquery'], '1.0.0', true);
+        wp_localize_script('theme-lam-team-js', 'ajax_object', [
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce'    => wp_create_nonce('team_nonce'),
+        ]);
+    }
+    if (is_post_type_archive('downloads')) {
+        wp_enqueue_style('theme-lam-download-css', get_template_directory_uri() . '/assets/css/download.css', [], '1.0.0', 'all');
+        wp_enqueue_script('theme-lam-download-js', get_template_directory_uri() . '/assets/js/download.js', ['jquery'], '1.0.0', true);
+        wp_localize_script('theme-lam-download-js', 'ajax_object', [
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'nonce'    => wp_create_nonce('downloads_nonce'),
+        ]);
+    }
+    if (is_page('news') || is_search()) {
+        wp_enqueue_style('theme-lam-news-css', get_template_directory_uri() . '/assets/css/news.css', [], '1.0.0', 'all');
+        wp_enqueue_script('theme-lam-news-js', get_template_directory_uri() . '/assets/js/new.js', ['jquery'], '1.0.0', true);
+   
+        wp_localize_script('theme-lam-news-js', 'ajax_objects', [
+            'ajax_url' => admin_url('admin-ajax.php'),
+        ]);
+    }
+    if (is_single()) {
+        wp_enqueue_style('theme-lam-detail-css', get_template_directory_uri() . '/assets/css/details.css', [], '1.0.0', 'all');
+    }
+  
+    add_action('wp_enqueue_scripts', 'theme_lam_enqueue_styles');
+    
     // Thư viện JS chung
     wp_enqueue_script('swiper-js', 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js', ['jquery'], '11.0.5', true);
     wp_enqueue_script('owl-carousel-js', get_template_directory_uri() . '/assets/libs/owl.carousel/owl.carousel.min.js', ['jquery'], '2.3.4', true);
     wp_enqueue_script('theme-slider-init', get_template_directory_uri() . '/assets/js/slider-init.js', ['jquery', 'owl-carousel-js'], '1.0.0', true);
     wp_enqueue_script('theme-lam-main-js', get_template_directory_uri() . '/assets/js/main.js', ['jquery'], '1.0.0', true);
     wp_enqueue_script('theme-lam-custom-js', get_template_directory_uri() . '/assets/js/custom.js', ['theme-lam-main-js'], '1.0.0', true);
+  
 }
+function enqueue_ajax_script() {
+}
+add_action('wp_enqueue_scripts', 'enqueue_ajax_script');
 
 add_action('wp_enqueue_scripts', 'theme_lam_enqueue_assets');
 

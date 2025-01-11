@@ -23,7 +23,7 @@ $(document).ready(function () {
         disableScroll();
 
     });
-    $("#close-btn, #overlay ").click(function () {
+    $("#close-btn, #overlay, .close-back").click(function () {
         $("#user-popup, #overlay").addClass("hidden");
         enableScroll()
     });

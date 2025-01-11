@@ -1,6 +1,4 @@
-<?php
-echo do_shortcode('[message_button]');
-?>
+
 <footer class="footer">
     <div class="container">
         <div class="footer-top">

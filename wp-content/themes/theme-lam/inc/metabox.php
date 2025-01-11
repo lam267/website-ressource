@@ -58,11 +58,16 @@ function add_team_meta_boxes() {
 add_action('add_meta_boxes', 'add_team_meta_boxes');
 
 function render_team_meta_box($post) {
+    $linkedIn = get_post_meta($post->ID, 'team_link', true);
     $address = get_post_meta($post->ID, 'team_address', true);
     $position = get_post_meta($post->ID, 'team_position', true);
     $description = get_post_meta($post->ID, 'team_description', true);
 
     ?>
+     <p>
+        <label for="team_link"><?php _e('link:', 'textdomain'); ?></label>
+        <input type="text" id="team_link" name="team_link" value="<?php echo esc_attr($linkedIn); ?>" style="width:100%;">
+    </p>
     <p>
         <label for="team_address"><?php _e('Address:', 'textdomain'); ?></label>
         <input type="text" id="team_address" name="team_address" value="<?php echo esc_attr($address); ?>" style="width:100%;">
@@ -83,6 +88,7 @@ function save_team_meta_box($post_id) {
         return;
     }
 
+    update_post_meta($post_id, 'team_link', sanitize_text_field($_POST['team_link']));
     update_post_meta($post_id, 'team_address', sanitize_text_field($_POST['team_address']));
     update_post_meta($post_id, 'team_position', sanitize_text_field($_POST['team_position']));
     update_post_meta($post_id, 'team_description', sanitize_textarea_field($_POST['team_description']));
@@ -153,3 +159,42 @@ function save_review_meta_box($post_id) {
     }
 }
 add_action('save_post', 'save_review_meta_box');
+
+function add_downloads_meta_boxes() {
+    add_meta_box(
+        'downloads_meta_box', // ID của metabox
+        __('Download Details', 'textdomain'), // Tiêu đề metabox
+        'render_downloads_meta_box', // Hàm hiển thị metabox
+        'downloads', // Post type áp dụng
+        'normal', // Vị trí
+        'high' // Độ ưu tiên
+    );
+}
+add_action('add_meta_boxes', 'add_downloads_meta_boxes');
+
+function render_downloads_meta_box($post) {
+    // Lấy giá trị các meta field
+    $link = get_post_meta($post->ID, 'downloads_link', true);
+    $description = get_post_meta($post->ID, 'downloads_description', true);
+    ?>
+    <p>
+        <label for="downloads_link"><?php _e('File Link:', 'textdomain'); ?></label>
+        <input type="url" id="downloads_link" name="downloads_link" value="<?php echo esc_attr($link); ?>" style="width:100%;">
+    </p>
+    <p>
+        <label for="downloads_description"><?php _e('Description:', 'textdomain'); ?></label>
+        <textarea id="downloads_description" name="downloads_description" rows="5" style="width:100%;"><?php echo esc_textarea($description); ?></textarea>
+    </p>
+    <?php
+}
+
+function save_downloads_meta_box($post_id) {
+    if (!isset($_POST['downloads_link']) || !current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    // Lưu dữ liệu
+    update_post_meta($post_id, 'downloads_link', esc_url_raw($_POST['downloads_link']));
+    update_post_meta($post_id, 'downloads_description', sanitize_textarea_field($_POST['downloads_description']));
+}
+add_action('save_post', 'save_downloads_meta_box');

@@ -35,16 +35,16 @@
                     <?php 
                         $cards = get_field('info_cards'); 
                         if ($cards && have_rows('info_cards')):?>
-                        <?php while (have_rows('info_cards')) : the_row(); ?>
-                            <div class="info-card-item d-flex align-start justify-between flex-column">
-                                <span class="icon icon-pink d-flex justify-center align-center">
-                                    <?php echo get_sub_field('card_svg');  ?>
-                                </span>
-                                <div class="card-content">
-                                    <?php echo get_sub_field('card_content');?>
-                                </div>
-                            </div>
-                        <?php endwhile; ?>
+                    <?php while (have_rows('info_cards')) : the_row(); ?>
+                    <div class="info-card-item d-flex align-start justify-between flex-column">
+                        <span class="icon icon-pink d-flex justify-center align-center">
+                            <?php echo get_sub_field('card_svg');  ?>
+                        </span>
+                        <div class="card-content">
+                            <?php echo get_sub_field('card_content');?>
+                        </div>
+                    </div>
+                    <?php endwhile; ?>
                     <?php endif; ?>
                 </div>
             </div>
@@ -52,88 +52,52 @@
     </section>
     <section class="project-news">
         <div class="container">
-            <div class="project-box project-large-left">
+            <?php if( have_rows('project_news') ): ?>
+            <?php $counter = 0;  ?>
+            <?php while( have_rows('project_news') ): the_row(); ?>
+            <?php 
+                $project_image_1 = get_sub_field('project_image_1'); 
+                $project_image_2 = get_sub_field('project_image_2'); 
+                $project_description = get_sub_field('project_descrption'); 
+                $project_content = get_sub_field('project_content'); 
+            ?>
+            <div class="project-box <?php echo ($counter % 2 == 0) ? 'project-large-left' : 'project-large-right'; ?>">
                 <div class="project-thumbnails d-flex align-start justify-between">
                     <div class="thumbnails-description">
-                        <img src="./assets/images/projeckt-work.png" alt="working image">
+                        <?php if($project_image_1): ?>
+                        <img src="<?php echo esc_url($project_image_1); ?>" alt="Project Image 1">
+                        <?php endif; ?>
                         <div class="description">
                             <div class="quote-mark">
                                 <svg width="46" height="32" viewBox="0 0 46 32" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
                                         d="M28.5502 32L36.0676 18.7065H46L38.481 32H28.5502ZM2.7232 32L9.85803 18.7065H19.7904L12.6556 32H2.7232ZM26.2839 18.7065V0H46V18.7065H26.2839ZM0 18.7065V0H19.7161V18.7065H9.85803H0Z"
-                                        fill="#FF437D" />
+                                        fill="#277DFF" />
                                 </svg>
                             </div>
-                            <h3>
-                                Einfacharbeit sind Tätigkeiten, die <a href="#"> ohne formale Berufsqualifikationen </a>
-                                zugänglich sind
-                            </h3>
+                            <?php if($project_description): ?>
+                            <h3><?php echo $project_description; ?></h3>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="thumbnails">
-                        <img src="./assets/images/image_work.png" alt="working image">
+                        <?php if($project_image_2): ?>
+                        <img src="<?php echo esc_url($project_image_2); ?>" alt="Project Image 2">
+                        <?php endif; ?>
                     </div>
                 </div>
                 <div class="project-detail d-flex">
                     <div class="w-39 d-flex justify-end flex-column">
-                        <p class="project-text">
-                            Das Verbundprojekt ressource wird für den Aufbau des Kompetenzzentrums
-                        </p>
-                        <ul class="project-line">
-                            <li>Lösungen guter Arbeitsgestaltung im Feld Einfacharbeit gemeinsam mit Praxispartnern
-                                in der Logistik und den gesundheitsbezogenen Dienstleistungen entwickeln und erproben
-                            </li>
-                            <li>die Diversität verschiedener Beschäftigtengruppen für die Entwicklung bedarfsgerechter
-                                Lösungen berücksichtigen</li>
-                            <li>die Kompetenzen der Führungskräfte und der betrieblichen Interessenvertretungen für
-                                die Unterstützung von Einfacharbeitenden weiterentwickeln</li>
-                            <li>neben der Beratung in Präsenz eine Internetplattform aufbauen, die leicht zugängliche
-                                Informationen, Beratungsdienste und Gestaltungslösungen für
-                                Interessierte anbietet</li>
-                        </ul>
+                        <?php if($project_content): ?>
+                        <p class="project-text"><?php echo $project_content; ?></p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
-            <div class="project-box project-large-right">
-                <div class="project-thumbnails d-flex align-start justify-between">
-                    <div class="thumbnails-description">
-                        <img src="./assets/images/projeckt-work.png" alt="working image">
-                        <div class="description">
-                            <div class="quote-mark">
-                                <svg width="46" height="32" viewBox="0 0 46 32" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M28.5502 32L36.0676 18.7065H46L38.481 32H28.5502ZM2.7232 32L9.85803 18.7065H19.7904L12.6556 32H2.7232ZM26.2839 18.7065V0H46V18.7065H26.2839ZM0 18.7065V0H19.7161V18.7065H9.85803H0Z"
-                                        fill="#5479F7" />
-                                </svg>
-                            </div>
-                            <h3>
-                                Einfacharbeit heißt <a href="#" class="text-pink"> nicht </a> , dass die Arbeit einfach
-                                auszuführen ist
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="thumbnails">
-                        <img src="./assets/images/image_work.png" alt="working image">
-                    </div>
-                </div>
-                <div class="project-detail d-flex">
-                    <div class="w-39 d-flex justify-end flex-column">
-                        <p class="project-text">
-                            Gesundheitsförderliche Arbeitsgestaltung
-                        </p>
-                        <ul class="project-line">
-                            <li>Technische Assistenzsysteme und sensorbasierte,
-                                KI-gestützte Exoskelette</li>
-                            <li>Konzepte ganzheitlichen Gesundheitsmanagements und
-                                betrieblicher Präventionskulturen</li>
-                            <li>Gesundheitssensible Führungskonzepte und gesundheitsförderliche Maßnahmen der
-                                Kompetenzentwicklung</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <?php $counter++;  ?>
+            <?php endwhile; ?>
+            <?php endif; ?>
         </div>
     </section>
 </main>

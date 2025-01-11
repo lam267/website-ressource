@@ -84,8 +84,73 @@ function register_team_post_type() {
         'rewrite' => ['slug' => 'team'],
         'supports' => ['title', 'editor', 'thumbnail'],
     ]);
+    register_taxonomy('team_category', 'team', [
+        'hierarchical' => true,
+        'labels' => [
+            'name'              => __('Team Categories', 'theme-lam'),
+            'singular_name'     => __('Team Category', 'theme-lam'),
+            'search_items'      => __('Search Team Categories', 'theme-lam'),
+            'all_items'         => __('All Team Categories', 'theme-lam'),
+            'parent_item'       => __('Parent Team Category', 'theme-lam'),
+            'parent_item_colon' => __('Parent Team Category:', 'theme-lam'),
+            'edit_item'         => __('Edit Team Category', 'theme-lam'),
+            'update_item'       => __('Update Team Category', 'theme-lam'),
+            'add_new_item'      => __('Add New Team Category', 'theme-lam'),
+            'new_item_name'     => __('New Team Category Name', 'theme-lam'),
+            'menu_name'         => __('Team Categories', 'theme-lam'),
+        ],
+        'show_ui'       => true, 
+        'show_admin_column' => true, 
+        'rewrite'       => ['slug' => 'team'],
+    ]);
 }
+
 add_action('init', 'register_team_post_type');
+
+function create_downloads_post_type() {
+    register_post_type('downloads', array(
+        'labels' => array(
+            'name' => __('Downloads', 'theme-lam'),
+            'singular_name' => __('Download', 'theme-lam'),
+            'menu_name' => __('Downloads', 'theme-lam'),
+            'all_items' => __('All Downloads', 'theme-lam'),
+            'add_new' => __('Add New', 'theme-lam'),
+            'add_new_item' => __('Add New Download', 'theme-lam'),
+            'edit_item' => __('Edit Download', 'theme-lam'),
+            'new_item' => __('New Download', 'theme-lam'),
+            'view_item' => __('View Download', 'theme-lam'),
+            'search_items' => __('Search Downloads', 'theme-lam'),
+            'not_found' => __('No downloads found', 'theme-lam'),
+            'not_found_in_trash' => __('No downloads found in trash', 'theme-lam'),
+        ),
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => array('slug' => 'downloads', 'with_front' => false),
+        'supports' => array('title', 'editor', 'thumbnail'),
+        'show_in_rest' => true,
+        'menu_icon' => 'dashicons-download',
+    ));
+
+    register_taxonomy('download_category', 'downloads', array(
+        'labels' => array(
+            'name' => __('Download Categories', 'theme-lam'),
+            'singular_name' => __('Download Category', 'theme-lam'),
+            'search_items' => __('Search Categories', 'theme-lam'),
+            'all_items' => __('All Categories', 'theme-lam'),
+            'parent_item' => __('Parent Category', 'theme-lam'),
+            'parent_item_colon' => __('Parent Category:', 'theme-lam'),
+            'edit_item' => __('Edit Category', 'theme-lam'),
+            'update_item' => __('Update Category', 'theme-lam'),
+            'add_new_item' => __('Add New Category', 'theme-lam'),
+            'new_item_name' => __('New Category Name', 'theme-lam'),
+        ),
+        'hierarchical' => true,
+        'show_in_rest' => true,
+        'rewrite' => array('slug' => 'download-category', 'with_front' => false),
+    ));
+}
+add_action('init', 'create_downloads_post_type');
+
 
 function register_network_partners_post_type() {
     register_post_type('network_partners', [
@@ -119,6 +184,7 @@ function register_network_partners_post_type() {
         'show_in_rest' => true, 
     ]);
 }
+
 add_action('init', 'register_network_partners_post_type');
 // reviews
 function register_review_post_type() {
@@ -135,7 +201,6 @@ function register_review_post_type() {
         'menu_icon'     => 'dashicons-testimonial',
     ]);
 }
-add_action('init', 'register_review_post_type');
-
 
 add_action('init', 'register_review_post_type');
+

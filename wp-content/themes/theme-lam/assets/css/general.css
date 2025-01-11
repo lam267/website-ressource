@@ -422,11 +422,11 @@ header {
     position: relative;
     padding:   38px 20px 33px 42px;
 }
-.profile-card.profile-card-first {
+.profile-card:nth-child(3n+1) {
     border: 1px solid #CDD8FF;
     background: #E6EBFC;
 }
-.profile-card.profile-card-second {
+.profile-card:nth-child(3n+2) {
     border: 1px solid #9FF3E1;
     background: #CCF2EA;
 }
@@ -652,4 +652,35 @@ header {
     .header-mobile {
         padding: 10px;
     }
+}
+.gt_float_switcher .gt-selected .gt-current-lang {
+    padding: 0px!important;
+}
+.gtranslate_wrapper {
+    margin-top: 6px;
+    margin-left: 10px;
+}
+.gt_float_switcher .gt-selected,
+.gt_float_switcher  {
+    font-family: inherit!important;
+    font-size: 14px!important;
+    background: transparent!important;
+}
+.gt_float_switcher .gt_options.gt-open {
+    background: #fff!important;
+
+}
+.gt_float_switcher .gt-selected .gt-lang-code {
+    color: #fff!important;
+}
+
+.gtranslate-wrapper select {
+    padding: 5px;
+    font-size: 14px;
+}
+.gt_float_switcher .gt_options.gt-open +.gt-selected {
+    display: none;
+}
+.gt-current-lang img {
+    display: none !important; /* Ẩn cờ */
 }

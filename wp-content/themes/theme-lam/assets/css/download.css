@@ -1,0 +1,342 @@
+/* start banner section */
+.banner {
+    width: 100%;
+}
+
+.banner-content {
+    background-color: var(--color-primary);
+    height: 456px;
+    border-radius: 0px 0px 0px 235px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner-title {
+    font-size: 48px;
+    font-weight: 500;
+    line-height: 60px;
+    color: var(--color-text-second);
+    text-align: center;
+    margin-top: 28px;
+    width: 46%;
+}
+
+/* end section team */
+
+/* section info content */
+.info-content {
+    margin-top: 100px;
+    margin-bottom: 130px;
+}
+
+.info-box {
+    max-width: 976px;
+    width: 100%;
+    margin: 0 auto;
+    /* padding: 0px 342px 0px 342px; */
+}
+
+.info-content p {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 45px;
+    margin: 0 auto;
+}
+
+/* end section info content */
+/* section download */
+.downloads-section {
+    background-color: var(--color-primary);
+}
+
+.downloads-container {
+    border-radius: 0px 0px 65px 65px;
+    background-color: var(--color-text-second);
+    padding-bottom: 100px;
+}
+
+.category-section {
+    max-width: 1554px;
+    width: 100%;
+    padding: 0 33px;
+    margin: 0 auto;
+}
+
+.category-filter {
+    display: flex;
+    gap: 11px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.button-filter {
+    padding: 5px 16px 5px 26px;
+    border-radius: 65px;
+    /* border: 1px solid #170049; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #170049;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.button-filter:first-child {
+    padding: 5px 31px;
+
+}
+
+.button-filter span {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 34px;
+    text-align: center;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.button-filter.active {
+    background: #FF437D;
+}
+
+.category-list {
+    margin-top: 53px;
+}
+
+
+.downloads-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 46px 48px;
+}
+
+.download-card {
+    flex: 1;
+    width: 100%;
+    height: 319px;
+    border-radius: 35px;
+    display: flex;
+    align-items: start;
+    gap: 37px;
+    padding: 40px 31px 28px 30px;
+}
+.download-card:nth-child(12n-11),
+.download-card:nth-child(12n-10),
+.download-card:nth-child(12n-9),
+.download-card:nth-child(12n-8) {
+    background: #E6EBFC;
+    border: 2px solid #CDD8FF;
+}
+
+.download-card:nth-child(12n-7),
+.download-card:nth-child(12n-6),
+.download-card:nth-child(12n-5),
+.download-card:nth-child(12n-4) {
+    background: #FFD9E5;
+    border: 2px solid #FFC4D6;
+}
+
+.download-card:nth-child(12n-3),
+.download-card:nth-child(12n-2),
+.download-card:nth-child(12n-1),
+.download-card:nth-child(12n) {
+    background: #CCF2EA;
+    border: 2px solid #ABF4E5;
+}
+
+
+.card-image {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    max-width: 86px;
+    display: flex;
+    height: 86px;
+    border-radius: 50%;
+    justify-content: center;
+    position: relative;
+    margin-top: 0px;
+}
+.download-card:nth-child(12n-11) .card-image ,
+.download-card:nth-child(12n-10) .card-image ,
+.download-card:nth-child(12n-9) .card-image ,
+.download-card:nth-child(12n-8) .card-image {
+    background: #170049;
+}
+.download-card:nth-child(12n-7) .card-image ,
+.download-card:nth-child(12n-6) .card-image ,
+.download-card:nth-child(12n-5) .card-image ,
+.download-card:nth-child(12n-4) .card-image{
+    background: #FF437D;
+}
+.download-card:nth-child(12n-3) .card-image ,
+.download-card:nth-child(12n-2) .card-image ,
+.download-card:nth-child(12n-1) .card-image ,
+.download-card:nth-child(12n) .card-image {
+    background: #00BF99;
+}
+
+.card-image img {
+    width: 100%;
+    height: 85%;
+    object-fit: contain;
+    position: absolute;
+    bottom: 18px;
+}
+
+.card-content {}
+
+.category-label {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 34px;
+    margin-bottom: 13px;
+
+}
+
+.card-title {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 36px;
+    margin-bottom: 15px;
+}
+
+.card-description {
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 33px;
+}
+
+.card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.last-update {
+    font-size: 16px;
+    line-height: 22px;
+
+}
+
+.download-button {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 34px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+}
+
+/* end section download */
+@media (max-width: 1400px) {
+    .info-content p {
+        width: 80%;
+    }
+    .download-card {
+        height: auto;
+        gap: 33px;
+        padding: 32px 18px 25px 34px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .downloads-list {
+        gap: 32px;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .card-title {
+        font-size: 20px;
+        line-height: 32px;
+    }
+    .card-description {
+        /* margin-bottom: 15px; */
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* start banner section */
+    .banner-title {
+        font-size: 34px;
+        font-weight: 500;
+        line-height: 42px;
+        margin-top: 32px;
+        width: 100%;
+    }
+
+    .banner-content {
+        height: 440px;
+        padding: 0px 43px 0 37px;
+        border-radius: 0px 0px 0px 159px;
+    }
+
+    /* end banner section */
+
+    /* start info section */
+    .info-content {
+        margin-top: 84px;
+        margin-bottom: 122px;
+    }
+    .info-box {
+        max-width: 100%;
+        padding: 0 10px 0px 34px;
+    }
+
+    .info-content p {
+        font-size: 28px;
+        font-weight: 500;
+        line-height: 38px;
+        width: 90%;
+        margin: 0px;
+    }
+
+    /* end start info */
+    .category-filter {
+        gap: 14px;
+    }
+    .button-filter:first-child {
+        padding: 1px 20px;
+    }
+    .button-filter {
+        padding: 1px 20px;
+        height: 36px;
+    }
+    .button-filter span {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 34px;
+        text-align: center;
+
+
+    }
+}
+
+@media (max-width: 480px) {
+    .card-image {
+        max-width: 67px;
+        height: 68px;
+  
+    }
+    .card-image img {
+        height: 84%;
+        bottom: 14px;
+    }
+    .card-title {
+        margin-bottom: 20px;
+        line-height: 26px;
+    }
+    .card-description {
+        margin-bottom: 20px;
+    }
+    .card-footer {
+        gap: 44px;
+    }
+    .download-button {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
